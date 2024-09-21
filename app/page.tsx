@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const [product, setProduct] = useState([])
@@ -18,7 +19,7 @@ export default function Home() {
     try {
       let { data } = await axios.get("https://fakestoreapi.com/products")
       console.log(data);
-      
+
       setProduct(data)
     } catch (error) {
       console.log(error);
@@ -72,10 +73,16 @@ export default function Home() {
       <main className="w-full min-h-[90vh] flex justify-center">
         <div className="w-[90%] min-h-[90vh] grid  grid-cols-3 max-md:grid-cols-1 max-lg:grid-cols-2 place-items-center ">
           {product.map((item: any, index) => {
-            return <Link href={`/product/${item.id}`}>
-              <div key={item.id} className="relative max-h-96 m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+            return <Link key={item.id} href={`/product/${item.id}`}>
+              <div  className="relative max-h-96 m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
                 <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" >
-                  <img className="object-cover w-full h-full" src={item.image} alt="product image" />
+                  <Image
+                    className="object-cover w-full h-full"
+                    src={item.image}
+                    alt="product image"
+                    width={100}
+                    height={100}
+                  />
                   <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">3{index + 1}% OFF</span>
                 </a>
                 <div className="mt-4 px-5 pb-5">

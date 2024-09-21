@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import { useContext, useEffect, useState } from "react";
 import Navbar from "../../app/component/navbar";
 import { CounterContext } from "@/context/cartContext";
+import Image from "next/image";
 
 const CartPage: NextPage = () => {
     const { state, dispatch } = useContext(CounterContext);
@@ -42,10 +43,13 @@ const CartPage: NextPage = () => {
                                     <li key={product.id} className="px-4 py-5 sm:px-6">
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center">
-                                                <img
+                                                <Image
                                                     className="h-16 w-16 rounded-md object-cover"
-                                                    src={product.image} // Adjust the image URL accordingly
+                                                    src={product.image}
                                                     alt={product.title}
+                                                    width={100}
+                                                    height={100}
+
                                                 />
                                                 <div className="ml-4">
                                                     <div className="text-lg font-medium text-gray-900">
